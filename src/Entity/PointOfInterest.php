@@ -34,7 +34,7 @@ class PointOfInterest
     private $y;
 
     /**
-     * @ORM\Column(type="string", length=255)
+     * @ORM\Column(type="text")
      */
     private $label;
 
