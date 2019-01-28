@@ -9,9 +9,6 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
 
-/**
- * @Route("/api")
- */
 
 class LoginController
 {
@@ -25,16 +22,10 @@ class LoginController
     public function signup(Request $req, EntityManagerInterface $em)
     {
         // Get the request elements
-        $userName = $req->get('username');
         $email = $req->get('email');
         $password = $req->get('password');
-        // TODO implement language checkboxes in frontend
-        //$languages = $req->get('languages');
-        $languages = ['en', 'fr'];
 
-        // Check that the userName or email is not already used
-        $user = $em->getRepository(User::class)->findBy(['userName' => $userName]);
-        if ($user) return new JsonResponse(['error' => 'User with userName ' . $userName . ' already exists']);
+        // Check that email is not already used
         $user = $em->getRepository(User::class)->findBy(['email' => $email]);
         if ($user) return new JsonResponse(['error' => 'User with email ' . $email . ' already exists']);
 
